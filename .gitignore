@@ -1,0 +1,12 @@
+**/node_modules/
+**/dist/
+**/.vite/
+**/coverage/
+*.log
+*.zip
+.env
+.env.*
+.npmrc
+.DS_Store
+Thumbs.db
+# Keep roadster2-moon-cloudbase/_tmp: these files are CloudBase deployment inputs.

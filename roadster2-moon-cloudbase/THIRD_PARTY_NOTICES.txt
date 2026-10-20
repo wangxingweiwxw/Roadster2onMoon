@@ -1,0 +1,33 @@
+Roadster2 Moon v3 — attribution and source availability
+
+1. Openracing (user-supplied openracing.zip), Mozilla Public License 2.0.
+   src/effects.js adapts the continuous cold-gas plume shader from
+   openracing/src/fx/plumes.ts and the radial speed effect from src/fx/post.ts.
+   src/vehicle.js adapts the RCS damping/contact-state design from
+   openracing/src/physics/vehicle.ts. Stable-horizon and swept-camera design
+   follows openracing/src/camera.ts.
+   Modified files are provided in readable JavaScript source form in this
+   distribution. Those files and the modified game.js are under MPL-2.0.
+   Full license: licenses/MPL-2.0.txt.
+
+2. Roadster2.glb, from Roadster2-Standard-20261018-v4.zip, MPL-2.0.
+   Existing model geometry is preserved. Model source is included alongside
+   the distribution in the source project under licenses/model-source/.
+   Full license: licenses/MPL-2.0.txt.
+
+3. Three.js and GLTFLoader / BufferGeometryUtils, MIT License.
+   The existing r160 runtime is preserved. Full license: licenses/THREE-MIT.txt.
+
+4. Regolith texture maps are original deterministic procedural assets.
+   No photography, online textures, remote APIs or CDN are required to play.
+   The texture generation script remains in tools/bake-regolith.py in the
+   development project; it uses NumPy and Pillow, not needed at runtime.
+
+5. SELENE base geometry and gameplay are implemented procedurally in
+   src/moonbase.js, src/base-layout.js and src/base-physics.js, using the
+   user-supplied moonbase.png as a visual reference. The reference image
+   is not embedded or redistributed in the playable ZIP. Readable sources
+   are included under MPL-2.0.
+
+Tesla / Roadster names identify the vehicle represented. This is an unofficial
+game demo, with no claim of endorsement.

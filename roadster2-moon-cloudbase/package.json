@@ -1,0 +1,17 @@
+{
+  "name": "roadster2-moon-cloudbase",
+  "version": "3.2.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0 <23"
+  },
+  "scripts": {
+    "build": "vite build",
+    "build:track": "node _tmp/materialize-event-tracking-ticket.cjs"
+  },
+  "devDependencies": {
+    "vite": "7.3.7"
+  },
+  "aiworksEventTrackingBuild": 1
+}

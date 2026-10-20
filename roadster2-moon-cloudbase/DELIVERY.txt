@@ -1,0 +1,48 @@
+Roadster2 Moon v3.1 — CloudBase source delivery
+
+This is an isolated source copy of C:/moon/roadster2-moon.
+The game source and this deployment copy both include the v3.1 video library. This project is frontend-only.
+
+Adaptations:
+- package.json / package-lock.json: npm source build, exact Vite 7.3.7.
+- .node-version: Node 22.18.0; Vite requires Node >=22.12 in the 22.x line.
+- vite.config.js: explicit dist output, public static assets, relative base ./.
+- index.html / entry.js: load native game ESM after Vite's page entry.
+- public/: original game modules, local Three.js r160, GLB and texture maps.
+- public/game.js: removes the development QA panel/hooks, as in the v3 demo ZIP.
+- index.html: AI Works Skill adds its deterministic event tracking bridge.
+- package.json: Skill adds build:track, which materializes the pipeline ticket
+  then invokes vite build. The endpoint is tracking.aiworks.site.
+- _tmp/: Skill-generated deployment plan, frontend descriptor, ticket helper
+  and Codex desktop agent identity. Unknown app version is not guessed.
+
+Pipeline: npm ci -> npm run build:track -> publish dist through AI Works.
+No backend source, backend descriptor, scf_bootstrap or cloudbaserc.json.
+No CloudBase resource was created and no cloud deployment was executed.
+Upload the Skill-generated project ZIP, preserving its single root directory.
+Local node_modules, dist, test screenshots, logs and old ZIPs are excluded.
+
+Local validation: npm ci; npm run build:track.
+Without AIWORKS_EVENT_TRACKING_TICKET, the helper reports only missing status;
+the placeholder stays inert and the game can still run locally.
+The hosted pipeline supplies the real ticket; no credentials are included.
+
+Vite's public directory preserves GLB and native module paths byte-for-byte:
+https://vite.dev/guide/assets.html#the-public-directory
+Relative build base: https://vite.dev/guide/build.html#relative-base
+
+Game controls and attribution: GAME-README.txt and THIRD_PARTY_NOTICES.txt.
+
+Video library: four complete, user-supplied MP4s in public/assets/videos.
+720p H.264/AAC, original duration and audio; local poster thumbnails.
+Home cards and in-game V shortcut open a modal and suspend game input/audio.
+Only the selected video loads on demand; closing releases the media source.
+Original uploaded MP4s are preserved outside this project and not archived.
+Project ZIP must remain below 50,000,000 bytes (decimal 50 MB).
+
+v3.2: camera transitions use continuous position/aim damping with slew limits.
+Base-specific camera remains active through roof departure and descent.
+Airlock has illuminated portal, Chinese entry labels, ramp arrows and blue curtain.
+Base landing assist reduces standard departure flight from 17.3 s to 6.6 s;
+manual flight input cancels assist. Normal lunar physics remains unchanged.
+Camera regression tests cover 30/60/120 FPS in all three camera selections.

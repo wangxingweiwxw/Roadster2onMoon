@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<script data-aiworks-event-tracking-bridge="1" data-aiworks-event-tracking-sha256="sha256-EoPGuFoq/s3r6h+3VAlMJ15toAPmybAFkhWE58QcZqI=" data-aiworks-event-tracking-ticket="__AIWORKS_EVENT_TRACKING_TICKET__">(()=>{try{const current=document.currentScript,ticket=current&&current.dataset.aiworksEventTrackingTicket,placeholder='__'+'AIWORKS_EVENT_TRACKING_TICKET'+'__';if(!ticket||ticket===placeholder)return;let sent=false;const send=data=>{if(sent)return false;let body;try{body=JSON.stringify({...data,deploy_uuid:ticket})}catch{return false}if(new TextEncoder().encode(body).byteLength>1048576)return false;sent=true;fetch("https://tracking.aiworks.site/api/v1/event_tracking",{method:'POST',headers:{'content-type':'application/json'},body,credentials:'omit',referrerPolicy:'no-referrer',keepalive:true}).catch(()=>{});return true};if(self===top){const pageShow=()=>send({member_id:null,member_hash_id:null,client_id:null,element_type:'Page',log_type:'Show',view_url:location.href,is_iframe_show:0,client_timestamp:Date.now(),p_platform:'desktopweb'});if(document.readyState==='complete')queueMicrotask(pageShow);else addEventListener('load',pageShow,{once:true});return}const allowed=origin=>{try{const url=new URL(origin),host=url.hostname.toLowerCase();return url.protocol==='https:'&&(host==='zhihu.com'||host.endsWith('.zhihu.com'))}catch{return false}};const receive=event=>{if(sent||event.source!==parent||!allowed(event.origin))return;const data=event.data;if(!data||Array.isArray(data)||Object.prototype.toString.call(data)!=='[object Object]')return;if(send(data))removeEventListener('message',receive)};addEventListener('message',receive)}catch{}})();</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>Roadster2 月球探索 · 压缩空气 · 腾空 · 倒挂</title>
+<style>
+:root{
+  --ink:#eaf6ff; --muted:#8fb0c4; --cyan:#6fe8df; --gold:#f4ca78; --orange:#ff9a5c;
+  --panel:rgba(6,14,22,.88); --line:rgba(111,232,223,.35);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden;background:#03060b;color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  -webkit-user-select:none;user-select:none;touch-action:none}
+#view{position:fixed;inset:0;display:block}
+canvas{display:block}
+
+/* ---------- HUD ---------- */
+.hud{position:fixed;inset:0;pointer-events:none;z-index:10;display:none}
+.hud.on{display:block}
+#speedBox{position:absolute;right:26px;bottom:22px;text-align:right;text-shadow:0 2px 8px #000}
+#speedNum{font-size:56px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1;color:var(--ink)}
+#speedUnit{font-size:14px;color:var(--muted);letter-spacing:2px;margin-top:4px}
+#boostBox{position:absolute;right:26px;bottom:96px;width:230px;text-align:right}
+#airLabel{font-size:12px;color:var(--muted);letter-spacing:3px;margin-bottom:5px;display:flex;justify-content:space-between}
+#airBar{height:12px;border:1px solid var(--line);border-radius:6px;background:rgba(0,0,0,.45);overflow:hidden}
+#airFill{height:100%;width:100%;background:linear-gradient(90deg,#2aa8c4,#6fe8df);transition:width .08s linear}
+#airFill.low{background:linear-gradient(90deg,#e8843a,#ff9a5c)}
+#statusBox{position:absolute;left:22px;top:18px}
+#modeLine{font-size:13px;color:var(--muted);letter-spacing:2px}
+#invLine{font-size:13px;color:var(--orange);letter-spacing:2px;display:none;margin-top:4px;font-weight:700}
+#objBox{position:absolute;left:22px;top:64px;width:250px}
+.obj{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);margin-bottom:7px;line-height:1.3;text-shadow:0 1px 4px #000}
+.obj .dot{width:10px;height:10px;border-radius:50%;border:1.5px solid var(--muted);flex:none}
+.obj.done{color:#5fd9a0}
+.obj.done .dot{background:#5fd9a0;border-color:#5fd9a0;box-shadow:0 0 8px #5fd9a0}
+.obj.hot{color:var(--gold)}
+.obj.hot .dot{border-color:var(--gold);box-shadow:0 0 8px var(--gold)}
+#msgFeed{position:absolute;left:50%;transform:translateX(-50%);top:16%;text-align:center}
+.msg{font-size:22px;font-weight:800;letter-spacing:2px;color:var(--gold);text-shadow:0 2px 12px #000;animation:msgPop .3s ease-out, msgFade 2.6s ease-in .6s forwards;margin-bottom:10px}
+.msg.sub{font-size:15px;font-weight:600;color:var(--cyan)}
+.msg.warn{color:var(--orange)}
+@keyframes msgPop{from{transform:scale(.7);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes msgFade{to{opacity:0}}
+#compassBox{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);text-align:center}
+#compass{font-size:13px;color:var(--muted);letter-spacing:1px}
+#compassArrow{display:inline-block;width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:14px solid var(--gold);margin-right:8px;transition:transform .1s linear}
+#controlsHint{position:absolute;right:22px;top:18px;text-align:right;font-size:11.5px;color:var(--muted);line-height:1.9;text-shadow:0 1px 3px #000}
+#controlsHint b{color:var(--cyan);font-weight:600}
+#pauseBtn{position:absolute;right:22px;top:170px;pointer-events:auto;background:rgba(6,14,22,.75);border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:6px 12px;font-size:12px;cursor:pointer}
+#pauseBtn:hover{border-color:var(--cyan)}
+
+/* ---------- overlay ---------- */
+.overlay{position:fixed;inset:0;background:radial-gradient(1200px 700px at 50% 30%, rgba(20,40,60,.55), rgba(2,5,10,.94));display:flex;align-items:center;justify-content:center;z-index:20}
+.overlay .card{max-width:640px;width:90%;max-height:88vh;overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:34px 40px;box-shadow:0 20px 60px #000}
+.overlay h1{font-size:34px;letter-spacing:4px;font-weight:800;color:var(--ink)}
+.overlay h1 .gold{color:var(--gold)}
+.overlay .sub{color:var(--cyan);letter-spacing:6px;font-size:13px;margin:8px 0 22px}
+.overlay p{font-size:14px;line-height:1.9;color:#c6d9e6;margin-bottom:12px}
+.overlay .keys{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;font-size:13.5px;color:#c6d9e6;margin:14px 0 20px}
+.overlay .keys kbd{display:inline-block;min-width:34px;text-align:center;background:#0c1a26;border:1px solid var(--line);border-radius:6px;padding:2px 8px;font-family:inherit;color:var(--gold);font-weight:700}
+.overlay .keys .k-name{color:var(--ink)}
+.overlay .pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:12px;color:var(--cyan);margin:0 6px 8px 0}
+.btn{pointer-events:auto;display:inline-block;background:linear-gradient(135deg,#17a9c9,#4ec9c0);border:none;color:#04121a;font-size:17px;font-weight:800;letter-spacing:4px;padding:14px 42px;border-radius:10px;cursor:pointer;box-shadow:0 8px 26px rgba(23,169,201,.35);margin-top:8px}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--ink);box-shadow:none;letter-spacing:2px;font-size:14px;padding:10px 22px}
+#loading{position:fixed;inset:0;background:#04070d;z-index:40;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px}
+#loading .spin{width:54px;height:54px;border:3px solid rgba(111,232,223,.25);border-top-color:var(--cyan);border-radius:50%;animation:rot 1s linear infinite}
+@keyframes rot{to{transform:rotate(360deg)}}
+#loading p{color:var(--muted);letter-spacing:3px;font-size:14px}
+#finishStats{width:100%;border-collapse:collapse;margin:16px 0;font-size:14px}
+#finishStats td{padding:7px 6px;border-bottom:1px solid rgba(111,232,223,.15);color:#c6d9e6}
+#finishStats td:last-child{text-align:right;color:var(--gold);font-weight:700;font-variant-numeric:tabular-nums}
+#ratingText{font-size:15px;line-height:2;color:var(--cyan);margin:10px 0}
+.hidden{display:none!important}
+#flightPanel{position:absolute;left:22px;bottom:28px;border-left:2px solid #5f8899;padding:8px 0 8px 14px;text-shadow:0 2px 5px #000}
+#flightPanel.active{border-color:var(--cyan)}
+#thrustMode{font-size:10px;letter-spacing:2.5px;color:var(--cyan);margin-bottom:10px}
+.telemetry{display:flex;gap:22px}.telemetry span{font-size:10px;color:var(--muted)}.telemetry b{display:block;font-size:19px;font-weight:500;color:var(--ink);margin-top:6px;font-variant-numeric:tabular-nums}
+#graphics{position:absolute;right:22px;top:210px;display:flex;flex-direction:column;gap:9px;pointer-events:auto;font-size:11px;color:var(--muted)}
+#graphics select{color:var(--ink);background:#0c1a26;border:1px solid var(--line);border-radius:4px;padding:3px;font:inherit}#graphics input{accent-color:var(--cyan);vertical-align:middle}
+@media(max-width:850px){#controlsHint{display:none}#pauseBtn{top:18px}#graphics{top:60px}#flightPanel{bottom:125px}.telemetry{gap:12px}#objBox{width:220px}#compassBox{bottom:8px}#speedNum{font-size:40px}.overlay .card{padding:24px}.overlay h1{font-size:25px}}
+@media(prefers-reduced-motion:reduce){.msg{animation:none}.spin{animation-duration:3s!important}}
+#basePanel{position:absolute;left:22px;top:225px;width:268px;padding:14px 15px;border:1px solid #49748477;background:linear-gradient(135deg,#081a27e8,#102b38aa);border-radius:9px;font-size:11px;line-height:1.9;box-shadow:0 8px 25px #0004}
+.baseTitle{color:#c8f5ff;letter-spacing:2px;font-weight:600;font-size:12px}#basePressure{color:#8de9c1;margin:5px 0}#baseSteps{color:#afc6d5;font-size:10px}#baseHint{color:#f4ca78;line-height:1.6;margin-top:7px}#pauseBtn{top:195px}#graphics{top:233px}
+@media(max-width:850px){#basePanel{top:225px;width:215px;padding:9px;font-size:10px}#pauseBtn{top:18px}#graphics{top:60px}}
+</style>
+<link rel="stylesheet" href="/src/video-library.css">
+</head>
+<body>
+<canvas id="view"></canvas>
+
+<!-- HUD -->
+<div class="hud" id="hud">
+  <div id="statusBox">
+    <div id="modeLine">探索模式 · 月面</div>
+    <div id="invLine">◈ 倒挂模式 · 冷气吸附中</div>
+  </div>
+  <div id="objBox"></div><div id="basePanel"><div class="baseTitle">SELENE / 月球基地</div><div id="basePressure">真空 · 舱外</div><div id="baseSteps"></div><div id="baseHint">从底部气闸驶入</div></div>
+  <div id="msgFeed"></div>
+  <div id="compassBox">
+    <div><span id="compassArrow"></span><span id="compass">目标 ——</span></div>
+  </div>
+  <div id="flightPanel">
+    <div id="thrustMode">LUNAR CRUISE</div>
+    <div class="telemetry"><span>离地高度<b id="altitude">0.0 m</b></span><span>腾空时间<b id="flightTime">0.0 s</b></span><span>完整空翻<b id="flipCount">0</b></span><span>倒挂距离<b id="gripDistance">0 m</b></span></div>
+  </div>
+  <div id="boostBox">
+    <div id="airLabel"><span>压缩空气罐</span><span id="airPct">100%</span></div>
+    <div id="airBar"><div id="airFill"></div></div>
+  </div>
+  <div id="speedBox">
+    <div id="speedNum">0</div>
+    <div id="speedUnit">KM/H</div>
+  </div>
+  <div id="controlsHint">
+    <div><b>WASD</b> 驾驶</div>
+    <div><b>Shift</b> 压缩空气加速</div>
+    <div><b>空格</b> 腾空/空中喷气</div>
+    <div><b>E</b> 基地墙面吸附 / 熔岩管倒挂</div><div><b>Enter</b> 基地停靠结算</div>
+    <div><b>F</b> 尾翼形态</div>
+    <div><b>C</b> 追尾 / 座舱 / 远景 <b>R</b> 复位 <b>M</b> 静音</div>
+  </div>
+  <div id="graphics"><label>画质 <select id="qualitySelect"><option value="high">精细</option><option value="balanced">均衡</option><option value="performance">流畅</option></select></label><label><input type="checkbox" id="motionToggle" checked> 速度镜头</label></div>
+  <button id="videoHudBtn" type="button" data-open-videos><span>▶</span> 工作原理 <kbd>V</kbd></button>
+  <button id="pauseBtn" type="button">⏸ 暂停</button>
+</div>
+
+<!-- 开始 -->
+<div class="overlay" id="startOv">
+  <div class="card">
+    <h1>ROADSTER2 <span class="gold">月球探索</span></h1>
+    <div class="sub">SELENE BASE · 人造大气 / 墙面补气 / 倒姿出舱</div>
+    <div class="start-layout"><section>
+    <p>驾驶特斯拉 Roadster2 驰骋 1/6 重力的月面：<b style="color:var(--gold)">压缩空气加速</b>爆发冲刺，
+      <b style="color:var(--gold)">腾空</b>飞跃环形山与山脊，并在<b style="color:var(--gold)">熔岩管顶部倒挂</b>行驶。
+      收集氦-3 晶体，完成任意一项挑战后返回基地，在墙面泊位按 Enter 结算。</p>
+    <section class="principles" aria-labelledby="principleHeading">
+      <div class="principle-heading"><h2 id="principleHeading">工作原理影像馆</h2><span>4 个章节 · 6 分 30 秒</span></div>
+      <div id="principleCards" class="principle-grid"></div>
+      <p class="principle-note">点选封面观看完整讲解 · 原声 / 中文字幕 / 全屏</p>
+    </section></section>
+    <section class="start-brief">
+    <div class="start-actions"><button class="btn" id="startBtn">开始探索</button><button class="btn ghost" id="baseStartBtn">基地演练</button></div>
+    <div>
+      <span class="pill">目标 ① 收集 8 颗氦-3 晶体</span>
+      <span class="pill">目标 ② 极速 ≥ 300 km/h</span>
+      <span class="pill">目标 ③ 单次腾空 ≥ 4s 或完成 360° 空翻</span>
+      <span class="pill">目标 ④ 倒挂行驶 ≥ 50 米</span>
+      <span class="pill">目标 ⑤ 返回基地结算</span>
+    </div>
+    <div class="keys">
+      <span class="k-name">驾驶 / 转向</span><span><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></span>
+      <span class="k-name">压缩空气加速（喷口）</span><span><kbd>Shift</kbd></span>
+      <span class="k-name">腾空 / 空中喷气上升</span><span><kbd>空格</kbd></span>
+      <span class="k-name">墙面吸附 / 倒挂切换</span><span><kbd>E</kbd></span>
+      <span class="k-name">尾翼形态：收起 / 低风阻 / 空气刹车</span><span><kbd>F</kbd></span>
+      <span class="k-name">视角 / 复位 / 静音</span><span><kbd>C</kbd> <kbd>R</kbd> <kbd>M</kbd></span>
+      <span class="k-name">腾空时俯仰 / 横滚（空翻）</span><span><kbd>W</kbd><kbd>S</kbd> + <kbd>A</kbd><kbd>D</kbd></span>
+    </div>
+    <p style="font-size:12px;color:var(--muted);margin-top:14px">基地路线：底部气闸驶入 → 内墙按 E 停靠 → 松开 W/S 自动补气 → 空格辅助爬升、顶部倒姿出舱 → 松开方向键翻正落地。基地内气密力场维持人造大气。</p>
+    </section></div>
+  </div>
+</div>
+
+<!-- 完成 -->
+<div class="overlay hidden" id="finishOv">
+  <div class="card">
+    <h1>旅程完成 <span class="gold">✓</span></h1>
+    <div class="sub" id="finishSub">LUNAR EXPEDITION COMPLETE</div>
+    <table id="finishStats"></table>
+    <div id="ratingText"></div>
+    <button class="btn" id="againBtn">再次出发</button>
+    <button class="btn ghost" id="closeBtn">返回驾驶</button>
+  </div>
+</div>
+
+<!-- 暂停 -->
+<div class="overlay hidden" id="pauseOv">
+  <div class="card" style="text-align:center">
+    <h1>已暂停</h1>
+    <div class="sub">PAUSED</div>
+    <button class="btn" id="resumeBtn">继续</button>
+    <button class="btn ghost" id="restartBtn">重新开始</button>
+  </div>
+</div>
+
+<dialog id="videoDialog" class="video-dialog" aria-labelledby="videoTitle" aria-describedby="videoSummary">
+  <div class="video-heading"><div><small>ROADSTER2 / 工作原理影像馆</small><h2 id="videoTitle">结构透视</h2></div><button id="videoClose" class="video-close" type="button" autofocus>关闭 · Esc</button></div>
+  <div class="video-layout"><div class="video-main">
+    <video controls playsinline preload="none" aria-label="工作原理讲解视频"></video>
+    <p id="videoSummary"></p><p id="videoAction"></p>
+    <div class="video-footer"><span id="videoStatus" role="status" aria-live="polite"></span><button id="videoNext" class="video-close" type="button">下一章 →</button></div>
+    <p class="principle-note">概念原理讲解；游戏采用月球低重力与简化物理，演示数值不等同于游戏参数。</p>
+  </div><nav id="videoPlaylist" class="video-playlist" aria-label="选择讲解章节"></nav></div>
+</dialog>
+<div id="loading"><div class="spin"></div><p>正在部署 Roadster2 至月面…</p></div>
+
+<script type="importmap">
+{"imports":{"three":"./lib/three.module.min.js","three/addons/":"./lib/"}}
+</script>
+<script type="module" src="./entry.js"></script>
+</body>
+</html>

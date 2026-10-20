@@ -1,0 +1,52 @@
+name: Deploy GitHub Pages
+
+# Preparing a release is separate from publishing it: only a manual run deploys.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: roadster2-moon-cloudbase/.node-version
+          cache: npm
+          cache-dependency-path: roadster2-moon-cloudbase/package-lock.json
+      - uses: actions/configure-pages@v5
+      - run: npm ci
+        working-directory: roadster2-moon-cloudbase
+      - run: node tests/run.js
+      - run: npm run build
+        working-directory: roadster2-moon-cloudbase
+      - run: node scripts/check-assets.mjs --built
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: roadster2-moon-cloudbase/dist
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish site
+        id: deployment
+        uses: actions/deploy-pages@v4

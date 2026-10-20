@@ -1,0 +1,228 @@
+{
+  "sourceArchive": "roadster2-moon-cloudbase.zip",
+  "version": "3.2.0",
+  "bytes": 37657233,
+  "sha256": "565a66e490fdc0cc818425ef075516e609d74e1b4a16679e572d0abc77a05475",
+  "files": [
+    {
+      "path": "roadster2-moon-cloudbase/.node-version",
+      "sha256": "333b9d8fed3f87c469d5b483f4b562fc108185baff26c7dda766ba234f0e7a69",
+      "bytes": 9
+    },
+    {
+      "path": "roadster2-moon-cloudbase/DELIVERY.txt",
+      "sha256": "0c39c747274e7b1739b8e6418989140780398c84520cba742099bb247ce2c21f",
+      "bytes": 2930
+    },
+    {
+      "path": "roadster2-moon-cloudbase/GAME-README.txt",
+      "sha256": "850a227e7b294949368906f0a998406e2ce03343ba71c4a6c4f095536f909f01",
+      "bytes": 6226
+    },
+    {
+      "path": "roadster2-moon-cloudbase/THIRD_PARTY_NOTICES.txt",
+      "sha256": "5449a3c4d87dafd2f09f17dd32fc05d73cc119d06ad734f3b0f384b9e7b1e8a6",
+      "bytes": 1787
+    },
+    {
+      "path": "roadster2-moon-cloudbase/_tmp/deploy-plan.json",
+      "sha256": "737bbea72478a7c2938b98dcefcad997c808207a601910da28e1235bbc4a9bc3",
+      "bytes": 1939
+    },
+    {
+      "path": "roadster2-moon-cloudbase/_tmp/frontend.deploy.json",
+      "sha256": "73e027a057b88d17c2e5d087ffa6508521871a72fd62db724c0bb98d8e4c6bfd",
+      "bytes": 254
+    },
+    {
+      "path": "roadster2-moon-cloudbase/_tmp/materialize-event-tracking-ticket.cjs",
+      "sha256": "e150a364eedacfe927de963215cd0be76db29fe5a6d60e8eed6e6c0966ccec42",
+      "bytes": 1624
+    },
+    {
+      "path": "roadster2-moon-cloudbase/_tmp/settle.agent.json",
+      "sha256": "34c01039a01d16269cdfb58a06e40538eae47cc04b6d4c761dcccaedb5f99c56",
+      "bytes": 241
+    },
+    {
+      "path": "roadster2-moon-cloudbase/entry.js",
+      "sha256": "99ebfd78081933037f322ce306f12c062ad0007b6a1c03bd2ef3f651e90257a1",
+      "bytes": 161
+    },
+    {
+      "path": "roadster2-moon-cloudbase/index.html",
+      "sha256": "14c23ea5a142298e5cc3a62eae2a35335eb5e0e2fece0450a0929aa0379e4c81",
+      "bytes": 16564
+    },
+    {
+      "path": "roadster2-moon-cloudbase/licenses/MPL-2.0.txt",
+      "sha256": "f98118e352c0c17b1bd04afee6f258d5c29116bf5e6b74fa0a28148ab372519a",
+      "bytes": 17097
+    },
+    {
+      "path": "roadster2-moon-cloudbase/licenses/THREE-MIT.txt",
+      "sha256": "8b378ebe60e2fe500158cb0ac71cb5e8b7d92953c2abcc63a0eb90499653b5bc",
+      "bytes": 1081
+    },
+    {
+      "path": "roadster2-moon-cloudbase/licenses/model-source/roadsterAero.ts",
+      "sha256": "565afebb630a245547e56f000e14e7cf300462f61b210a421ce6456c0f529cc2",
+      "bytes": 4309
+    },
+    {
+      "path": "roadster2-moon-cloudbase/licenses/model-source/roadsterModel.ts",
+      "sha256": "a92da3876446931a210de0e7650da47925bc62490a5a80495ea4ff88b1291d9b",
+      "bytes": 21697
+    },
+    {
+      "path": "roadster2-moon-cloudbase/package-lock.json",
+      "sha256": "9b3500cb172bbef2eff91177a038cb4b0985c3bd7aa30e793da962bf675bf30c",
+      "bytes": 36063
+    },
+    {
+      "path": "roadster2-moon-cloudbase/package.json",
+      "sha256": "7adb7e6957ec29d87636aed1549a7014ad27afdb9bff09c23017a3c67361208e",
+      "bytes": 365
+    },
+    {
+      "path": "roadster2-moon-cloudbase/public/assets/Roadster2.glb",
+      "sha256": "d4792c8b0ecfb4ff09b0fcc021920e07d8643bf0d18035cec4e4f71501ac0313",
+      "bytes": 2291812
+    },
+    {
+      "path": "roadster2-moon-cloudbase/public/assets/textures/regolith-color.jpg",
+      "sha256": "0cee95ecbb7e79c7e763214c50f68fc3085f83e02af871b70f65317efd7ff1ee",
+      "bytes": 6005928
+    },
+    {
+      "path": "roadster2-moon-cloudbase/public/assets/textures/regolith-normal.webp",
+      "sha256": "3f7ba117d703d275416cd499533745922029f32b9b3c7328848f3be5fcaf15ad",
+      "bytes": 2234886
+    },
+    {
+      "path": "roadster2-moon-cloudbase/public/assets/textures/regolith-roughness.jpg",
+      "sha256": "2aa539109e935952fb4e99c12d4d8be54e772a2c447e7eb0f4e6f3f8619bcd66",
+      "bytes": 107235
+    },
+    {
+      "path": "roadster2-moon-cloudbase/public/assets/videos/ceiling.jpg",
+      "sha256": "ab91836ab188cd58599a25c18dfe47cf98879b878342afda5f0be13e2b9a07e0",
+      "bytes": 23326
+    },
+    {
+      "path": "roadster2-moon-cloudbase/public/assets/videos/ceiling.mp4",
+      "sha256": "7cca3e70a87dce2e1b6594d8760ff639eb31a88a4fe5296f053777b965f47927",
+      "bytes": 7504130
+    },
+    {
+      "path": "roadster2-moon-cloudbase/public/assets/videos/hover.jpg",
+      "sha256": "5656577a52e02fa90d19f0363458a8c9d5ea15c3ed8a2ed912a3e506b6fb557f",
+      "bytes": 11969
+    },
+    {
+      "path": "roadster2-moon-cloudbase/public/assets/videos/hover.mp4",
+      "sha256": "33bc861c6ab179461b3cf3ebc101fb8f7c91b5d669f90b0c6ce739197f83aa38",
+      "bytes": 7461720
+    },
+    {
+      "path": "roadster2-moon-cloudbase/public/assets/videos/launch.jpg",
+      "sha256": "5593d6349f5de7fa3ed19ef7d3a82243f560eb1555c957a237c51e80db48df2a",
+      "bytes": 13979
+    },
+    {
+      "path": "roadster2-moon-cloudbase/public/assets/videos/launch.mp4",
+      "sha256": "dda8f5ebff61b9093cdd7003d36ff7ecc40ef23833067fa3f9f7f69506b5414b",
+      "bytes": 7198379
+    },
+    {
+      "path": "roadster2-moon-cloudbase/public/assets/videos/xray.jpg",
+      "sha256": "75f12fe05ad63a63b3a9e9d069707e6c6e6c093ab8133777f6bd910940fe5f32",
+      "bytes": 26657
+    },
+    {
+      "path": "roadster2-moon-cloudbase/public/assets/videos/xray.mp4",
+      "sha256": "f38b4f48975915795f40aab6f6d6680a60c707efc415bb176714186050cfb71f",
+      "bytes": 7091828
+    },
+    {
+      "path": "roadster2-moon-cloudbase/public/game.js",
+      "sha256": "f25b11353db9e2c9a3fb1aaa43accb40af5bcc7dba28d51111a110de8c83543e",
+      "bytes": 43993
+    },
+    {
+      "path": "roadster2-moon-cloudbase/public/lib/loaders/GLTFLoader.js",
+      "sha256": "d073b438e6a07e1359741dd5d6c76c953420cc0d4fd84eb1bdde94315540e6a3",
+      "bytes": 108522
+    },
+    {
+      "path": "roadster2-moon-cloudbase/public/lib/three.module.min.js",
+      "sha256": "3e690ac7d180b0aadf0891bea39eec643e29e2d3e75c99b18689518665f69ba6",
+      "bytes": 670681
+    },
+    {
+      "path": "roadster2-moon-cloudbase/public/lib/utils/BufferGeometryUtils.js",
+      "sha256": "9be041e96308775d00e2695cc607645b9a9b64fd7c0e759dd8f7c00a8d92becb",
+      "bytes": 31906
+    },
+    {
+      "path": "roadster2-moon-cloudbase/public/src/base-layout.js",
+      "sha256": "c874bf765457c4181f4e0e9e4388fb47390ff7e6d686ad387d0e772478aeb496",
+      "bytes": 1803
+    },
+    {
+      "path": "roadster2-moon-cloudbase/public/src/base-physics.js",
+      "sha256": "d65cfcb97cb40ca7484878c001e140511b60f7b8e54dc02c4527a2bdbb9fe9e6",
+      "bytes": 6123
+    },
+    {
+      "path": "roadster2-moon-cloudbase/public/src/camera-rig.js",
+      "sha256": "d190576050a71983356dccaf4dc15dc8d956db35a12b698987de7102c1076b0c",
+      "bytes": 4836
+    },
+    {
+      "path": "roadster2-moon-cloudbase/public/src/config.js",
+      "sha256": "79155d7067e01c5018ad009135e8fd88fa33987a3a0de128aac2964dadaf318c",
+      "bytes": 1291
+    },
+    {
+      "path": "roadster2-moon-cloudbase/public/src/effects.js",
+      "sha256": "93cc5cee36420b5d72fbb5f6bcc32bae28e4958dc7bb9caaf58a49d68749d945",
+      "bytes": 12929
+    },
+    {
+      "path": "roadster2-moon-cloudbase/public/src/moonbase.js",
+      "sha256": "527e8425f523da735113dc7bd7229bc50ceaad5a55643871990a9bdc61b514e0",
+      "bytes": 16148
+    },
+    {
+      "path": "roadster2-moon-cloudbase/public/src/surface.js",
+      "sha256": "c67af68164397c273549e50d2ce863aaf5e42b51868de58c051f243c1cbdda23",
+      "bytes": 5041
+    },
+    {
+      "path": "roadster2-moon-cloudbase/public/src/terrain.js",
+      "sha256": "f19311cf6fbab362a658947a815bfa9cc774aabaf17867aa5ec0f8c7c205da59",
+      "bytes": 2349
+    },
+    {
+      "path": "roadster2-moon-cloudbase/public/src/vehicle.js",
+      "sha256": "03d7fc9db1217c949da7ba0ce1c4ffdc53b3ca6c4a30be285e9b104e7918e072",
+      "bytes": 9046
+    },
+    {
+      "path": "roadster2-moon-cloudbase/public/src/video-library.css",
+      "sha256": "86926d52f48b112ef0c9443ebd8a1a610322d92bbe9e8d6f20e31861c8a96a00",
+      "bytes": 5066
+    },
+    {
+      "path": "roadster2-moon-cloudbase/public/src/video-library.js",
+      "sha256": "630004b06a9da5ea81faa1ad2b3491dd8de161cf231a9d69ff6d7b7c301bb43d",
+      "bytes": 4232
+    },
+    {
+      "path": "roadster2-moon-cloudbase/vite.config.js",
+      "sha256": "9b2c1107c20d0e0280ca895dae4a600b44a03bf7193a5a9c8712020019ad2f61",
+      "bytes": 130
+    }
+  ]
+}
